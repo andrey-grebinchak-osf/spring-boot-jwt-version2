@@ -1,7 +1,9 @@
-package com.javainuse.controller;
+package com.osf.controller;
 
-import java.util.Objects;
-
+import com.osf.config.JwtTokenUtil;
+import com.osf.model.JwtResponse;
+import com.osf.model.LoginDetails;
+import com.osf.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,21 +12,15 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.javainuse.service.JwtUserDetailsService;
-
-
-import com.javainuse.config.JwtTokenUtil;
-import com.javainuse.model.JwtRequest;
-import com.javainuse.model.JwtResponse;
-import com.javainuse.model.UserDTO;
 
 @RestController
 @CrossOrigin
-public class JwtAuthenticationController {
+@RequestMapping("/finaltask")
+public class AuthController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -33,10 +29,10 @@ public class JwtAuthenticationController {
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private JwtUserDetailsService userDetailsService;
+	private CustomUserDetailsService userDetailsService;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	@PostMapping(value = "/login")
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginDetails authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 

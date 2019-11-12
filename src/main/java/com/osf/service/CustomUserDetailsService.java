@@ -1,4 +1,4 @@
-package com.javainuse.service;
+package com.osf.service;
 
 import java.util.ArrayList;
 
@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.javainuse.repo.UserRepository;
-import com.javainuse.model.EskillUser;
-import com.javainuse.model.UserDTO;
+import com.osf.repo.UserRepository;
+import com.osf.model.EskillUser;
 
 @Service
-public class JwtUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;

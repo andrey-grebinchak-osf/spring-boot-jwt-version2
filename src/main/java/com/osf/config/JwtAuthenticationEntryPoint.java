@@ -1,4 +1,4 @@
-package com.javainuse.config;
+package com.osf.config;
 
 import java.io.IOException;
 import java.io.Serializable;
